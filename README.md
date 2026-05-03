@@ -1,0 +1,3 @@
+# Galactic Courier Service - Damage Assessment System
+
+Ez a projekt egy kliens-szerver architektúrájú C# alkalmazás, amely a szoftverfejlesztési tervezési mintákat (Singleton, Adapter, Chain of Responsibility) mutatja be egy fiktív csomagküldő szolgálat káreset-kezelésén keresztül. A rendszer az ASP.NET Core szervertől (Singletonon keresztül) lekérdezett XML formátumú sérülésjelentéseket egy Adapter segítségével JSON-né alakítja, hogy egy Analyzer kiszámíthassa a büntetőpontokat. Végül ezeket a pontszámokat egy felelősséglánc (Chain of Responsibility) értékeli ki, megállapítva a futárokra vonatkozó szükséges HR vagy katasztrófavédelmi lépéseket.

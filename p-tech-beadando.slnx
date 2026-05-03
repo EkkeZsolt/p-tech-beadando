@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Analyzer/Analyzer.csproj" />
+  <Project Path="Importer/Importer.csproj" />
+  <Project Path="Server/Server.csproj" />
+</Solution>
