@@ -1,5 +1,5 @@
 using System;
-using Importer.Handlers;
+using Importer.Factories;
 using Importer.Interfaces;
 using Importer.Adapters;
 using Importer.Singeltons;
@@ -17,18 +17,19 @@ class Program
         IAnalyzerTarget adapter = new AnalyzerAdapter(adaptee);
         int[] penaltyPoints = adapter.GetCalculatedPenalties(xmlData);
 
-        var okHandler = new OkHandler();
-        var financialHandler = new FinancialDepartmentHandler();
-        var hrHandler = new HrDepartmentHandler();
-        var disasterHandler = new DisasterManagementHandler();
-
-        okHandler.SetNext(financialHandler);
-        financialHandler.SetNext(hrHandler);
-        hrHandler.SetNext(disasterHandler);
+        Console.WriteLine("--- Alapértelmezett lánc indítása ---");
+        var handlerChain = HandlerChainFactory.CreateDefaultChain();
 
         foreach (int penalty in penaltyPoints)
         {
-            okHandler.Handle(penalty);
+            handlerChain.Handle(penalty);
+        }
+        
+        Console.WriteLine("\n--- Szigorú lánc indítása (nincs OK naplózás) ---");
+        var strictChain = HandlerChainFactory.CreateStrictChain();
+        foreach (int penalty in penaltyPoints)
+        {
+            strictChain.Handle(penalty);
         }
     }
 }
